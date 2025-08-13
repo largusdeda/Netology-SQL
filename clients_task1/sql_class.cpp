@@ -126,7 +126,7 @@ std::vector<Client> Database::findClients(const std::string& query) {
 			LEFT JOIN phone_numbers phn ON c.id = phn.client_id \
 			WHERE c.firstname = $1 OR c.lastname = $1 OR c.email = $1 OR phn.phone_number = $1", query);
 		
-		for (auto& row : res) {
+		for (const auto& row : res) {
 			std::string email = row["email"].as<std::string>();
 
 			if (uniqueClients.find(email) == uniqueClients.end()) {
@@ -154,6 +154,7 @@ std::vector<Client> Database::findClients(const std::string& query) {
 		std::cout << e.what() << std::endl;
 	}
 }
+
 
 
 
