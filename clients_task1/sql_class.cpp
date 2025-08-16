@@ -24,7 +24,7 @@ void Database::createDbTables() {
 		std::cout << "Db tables created" << std::endl;
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -42,7 +42,7 @@ void Database::addClient(const std::string& firstname, const std::string& lastna
 		}
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -59,7 +59,7 @@ void Database::addPhoneNum(const std::string& email, const std::string& phone_nu
 		}
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -76,7 +76,7 @@ void Database::updateClient(const std::string& email, const std::string& new_fir
 		}
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -93,7 +93,7 @@ void Database::removePhoneNum(const std::string& email, const std::string& phone
 		}
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -111,7 +111,7 @@ void Database::removeClient(const std::string& email) {
 		}
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
 
@@ -151,10 +151,9 @@ std::vector<Client> Database::findClients(const std::string& query) {
 		return result;
 	}
 	catch (pqxx::sql_error e) {
-		std::cout << e.what() << std::endl;
+		throw;
 	}
 }
-
 
 
 
